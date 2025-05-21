@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Lista de usuarios";
+}
+@model List<UserCatalogMvc.Models.User>
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4 border-0">
+        <div class="card-body">
+            <h2 class="text-center mb-4 text-primary">📋 Lista de Usuarios</h2>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Usuario</th>
+                            <th>Email</th>
+                            <th>Ciudad</th>
+                            <th>Empresa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td>@user.Name</td>
+                                <td>@user.Username</td>
+                                <td>@user.Email</td>
+                                <td>@user.Address?.City</td>
+                                <td>@user.Company?.Name</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <a class="btn btn-primary btn-lg shadow" asp-area="" asp-controller="Home" asp-action="Index">Volver</a>
+        </div>
+    </div>
+</div>
