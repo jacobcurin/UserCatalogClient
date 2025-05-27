@@ -1,0 +1,106 @@
+﻿@model UserCatalogMvc.Models.User
+@{
+    Layout = null; // Recomendado si solo exportas esta vista como PDF
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ficha de Usuario</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 40px;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 15px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .info {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .value {
+            color: #555;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ficha de Usuario</h1>
+
+        <div class="section">
+            <div class="section-title">Información Personal</div>
+            <div class="info">
+                <div class="label">Nombre:</div>
+                <div class="value">@Model.Name</div>
+            </div>
+            <div class="info">
+                <div class="label">Usuario:</div>
+                <div class="value">@Model.Username</div>
+            </div>
+            <div class="info">
+                <div class="label">Email:</div>
+                <div class="value">@Model.Email</div>
+            </div>
+            <div class="info">
+                <div class="label">Teléfono:</div>
+                <div class="value">@Model.Phone</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Información del Área</div>
+            <div class="info">
+                <div class="label">Ciudad:</div>
+                <div class="value">@Model.Address?.City</div>
+            </div>
+            <div class="info">
+                <div class="label">Empresa:</div>
+                <div class="value">@Model.Company?.Name</div>
+            </div>
+            <div class="info">
+                <div class="label">Sitio Web:</div>
+                <div class="value">@Model.Website</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

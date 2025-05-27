@@ -63,5 +63,24 @@ namespace UserCatalogMvc.Controllers
             return File(bytes, "text/csv", "usuarios.csv");
         }
 
+        //función para ver los detalles del usuario
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var response = await _httpClient.GetAsync($"https://jsonplaceholder.typicode.com/users/{id}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return NotFound();
+            }
+
+            var json = await response.Content.ReadAsStringAsync();
+            var user = JsonSerializer.Deserialize<User>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            return View(user);
+        }
     }
 }

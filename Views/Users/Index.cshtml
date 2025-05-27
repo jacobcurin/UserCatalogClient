@@ -3,11 +3,49 @@
 }
 @model List<UserCatalogMvc.Models.User>
 
+<style>
+    .action-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 25px;
+    }
+
+        .action-bar .btn {
+            min-width: 140px;
+        }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .btn-sm-custom {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+        border-radius: 8px;
+    }
+
+    .card-body h2 {
+        font-weight: 600;
+    }
+</style>
+
 <div class="container mt-5">
     <div class="card shadow-lg rounded-4 border-0">
-        <div class="card-body">
-            <h2 class="text-center mb-4 text-primary">📋 Lista de Usuarios</h2>
-            <a class="btn btn-success btn-lg shadow" asp-controller="Users" asp-action="ExportCsv">Exportar a CSV</a>
+        <div class="card-body p-5">
+            <h2 class="text-center text-primary mb-4">📋 Lista de Usuarios</h2>
+
+            <!-- Barra de acciones -->
+            <div class="action-bar mb-4">
+                <a class="btn btn-success btn-sm-custom shadow" asp-controller="Users" asp-action="ExportCsv">
+                    📤 Exportar a CSV
+                </a>
+                <a class="btn btn-outline-secondary btn-sm-custom shadow" asp-controller="Home" asp-action="Index">
+                    🔙 Volver
+                </a>
+            </div>
+
             <div class="table-responsive">
                 <table class="table table-hover table-striped align-middle">
                     <thead class="table-dark">
@@ -22,7 +60,7 @@
                     <tbody>
                         @foreach (var user in Model)
                         {
-                            <tr>
+                            <tr style="cursor:pointer;" onclick="location.href='@Url.Action("Details", "Users", new { id = user.Id })'">
                                 <td>@user.Name</td>
                                 <td>@user.Username</td>
                                 <td>@user.Email</td>
@@ -33,7 +71,6 @@
                     </tbody>
                 </table>
             </div>
-            <a class="btn btn-primary btn-lg shadow" asp-area="" asp-controller="Home" asp-action="Index">Volver</a>
         </div>
     </div>
 </div>

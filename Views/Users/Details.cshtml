@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = Model.Username;
+}
+@model UserCatalogMvc.Models.User
+
+<style>
+    .info-item {
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+    }
+
+        .info-item strong {
+            color: #555;
+            display: inline-block;
+            width: 130px;
+        }
+
+    .btn-action {
+        min-width: 170px;
+        font-size: 1rem;
+        padding: 10px 20px;
+        border-radius: 8px;
+    }
+
+    .btn-group-custom {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 30px;
+        justify-content: center;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4 border-0">
+        <div class="card-body p-5">
+            <h2 class="text-center text-primary mb-4">@Model.Name <span class="text-muted">(@Model.Username)</span></h2>
+
+            <div class="info-item"><strong>Email:</strong> @Model.Email</div>
+            <div class="info-item"><strong>Teléfono:</strong> @Model.Phone</div>
+            <div class="info-item"><strong>Ciudad:</strong> @Model.Address?.City</div>
+            <div class="info-item"><strong>Empresa:</strong> @Model.Company?.Name</div>
+
+            <div class="btn-group-custom">
+                @* Se considera la descarga de un pdf con los archivos pero estoy utilizando Rotativa y wkhtmltopdf, un archivo local
+                por lo que buscare otra manera de descargar esta lista de datos proveniente de la API gratuita que estoy consumiendo. *@
+                
+                @* <a class="btn btn-danger btn-action shadow" asp-controller="Users" asp-action="DownloadPdf" asp-route-id="@Model.Id">
+                    📄 Descargar PDF
+                </a> *@
+                <a class="btn btn-outline-secondary btn-action shadow" asp-controller="Users" asp-action="Index">
+                    🔙 Volver a la lista
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
